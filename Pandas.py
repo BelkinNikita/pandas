@@ -1,6 +1,11 @@
 import pandas as pd
 # Using of Pandas as pd is a recommended convention for data manipulation in Python
 
+import pyarrow as pa
+import pyarrow.parquet as pq 
+# Using of PyArrow as pa is a recommended convention for data manipulation in Python
+
+
 # Series and DataFrame
 s = pd.Series([1, 2, 3, 4, 5],  index=['a','b','c','d','e']) # each index has its own label
 df = pd.DataFrame({ 
@@ -68,4 +73,10 @@ df4 = pd.DataFrame({"A":[50,60], "B":[70,80]})
 print("Concatenate vertically:\n", pd.concat([df3, df4]))           # add vals as add cols
 print("Concatenate horizontally:\n", pd.concat([df3, df4], axis=1)) # add vals as add rows
 
-
+# Save / Load
+df.to_csv('DataFrame.csv', index=False) # False doesn't save indexes
+print("save/read.csv:\n", pd.read_csv('DataFrame.csv'))
+df.to_pickle('DataFrame.pkl')
+print("save/read.pkl:\n", pd.read_pickle('DataFrame.pkl'))
+df.to_parquet('DataFrame.parquet')
+print("save/read.parquet:\n", pd.read_parquet('DataFrame.parquet'))
